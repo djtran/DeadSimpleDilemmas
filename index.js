@@ -12,7 +12,6 @@ var dilemmas = [
     "Ninjas or Pirates?",
     "Does pineapple belong on pizza?",
     "Is it pronounced GIF or JIF?",
-    "Is holding the door sexist?",
     "Do you button a shirt top to bottom or bottom to top?",
     "If you do not directly oppose something, does that mean that you are in support of it or are supporting it?",
     "Milk before cereal or cereal before milk?",
@@ -20,17 +19,45 @@ var dilemmas = [
     "Do you crumple toilet paper or fold it before wiping?",
     "Can water get wet?"
 ];
+var currentIndex = 0;
+
 var presentDilemma = function() {
-    let index = Math.floor(Math.random() * Math.floor(dilemmas.length - 1));
+    if (currentIndex >= dilemmas.length) {
+        dilemmas = shuffle(dilemmas);
+        currentIndex = 0;
+    }
 
     $("#dilemma").fadeOut(function() {
-        $("#dilemma").text(dilemmas[index]);
+        $("#dilemma").text(dilemmas[currentIndex]);
     });
     $("#dilemma").fadeIn();
+    currentIndex += 1;
 }
+
+var shuffle = function (array) {
+
+	var currentIndex = array.length;
+	var temporaryValue, randomIndex;
+
+    //Fisher Yates shuffle
+	while (0 !== currentIndex) {
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+
+};
 
 document.addEventListener("DOMContentLoaded", function() {
     $("#main").fadeIn();
+    dilemmas = shuffle(dilemmas);
 });
 
 document.addEventListener('click', function (event) {
