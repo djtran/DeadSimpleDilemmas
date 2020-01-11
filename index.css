@@ -1,0 +1,26 @@
+#main {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: none;
+}
+
+body {
+    background-color: #444444;
+    color: #dddddd
+}
+
+h1 {
+    font-size: calc(18px + 2vw);
+}
+
+#dilemma {
+    font-size: calc(12px + 1vw);
+}
+
+a {
+    color: #9ff
+}
